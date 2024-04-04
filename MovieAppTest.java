@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,10 +12,12 @@ public class MovieAppTest {
 
     // Tests
     private MovieApp app;
+    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     @BeforeEach
     void init() {
         app = new MovieApp();
+        System.setOut(new PrintStream(outputStream));
     }
 
     @Test
@@ -67,6 +71,39 @@ public class MovieAppTest {
         assertTrue(app.favorites.get("ahsanul2051@gmail.com").contains(movie2));
         assertFalse(app.favorites.get("ahsanul2051@gmail.com").contains(movie1));
 
+    }
+
+    @Test
+    void displayUserDetailsTest() {
+        app.userRegistration("ahsanul2051@gmail.com");
+
+        Movie movie1 = new Movie("Movie1", "Action", Arrays.asList("X", "Y"), "1-4-2020", 400000);
+        Movie movie2 = new Movie("MovieName2", "Horror", Arrays.asList("Z", "H"), "1-4-2020", 400000);
+        Movie movie3 = new Movie("Film3", "Comedy", Arrays.asList("J", "K"), "1-4-2020", 400000);
+
+        app.addFavorites("ahsanul2051@gmail.com", movie1);
+        app.addFavorites("ahsanul2051@gmail.com", movie2);
+
+        app.displayUserDetails("ahsanul2051@gmail.com");
+        String expectedOutput = "Details Of ahsanul2051@gmail.com:\r\nahsanul2051@gmail.com's Favorites Are: \r\nMovie1\r\nMovieName2\r\n";
+        assertEquals(expectedOutput, outputStream.toString());
+
+    }
+
+    @Test
+    void searchFavoritesMoviesTest() {
+        Movie movie1 = new Movie("Movie1", "Action", Arrays.asList("X", "Y"), "1-4-2020", 400000);
+        Movie movie2 = new Movie("MovieName2", "Horror", Arrays.asList("Z", "H"), "1-4-2020", 400000);
+        Movie movie3 = new Movie("Film3", "Comedy", Arrays.asList("J", "K"), "1-4-2020", 400000);
+        Movie movie4 = new Movie("Film4", "Comedy", Arrays.asList("J", "K"), "1-4-2020", 400000);
+
+        app.addFavorites("ahsanul2051@gmail.com", movie1);
+        app.addFavorites("ahsanul2051@gmail.com", movie2);
+        app.addFavorites("ahsanul2051@gmail.com", movie4);
+
+        List<Movie> movieList = app.searchFavoritesMovies("ahsanul2051@gmail.com", "Film");
+        assertEquals(1, movieList.size());
+        assertEquals("Film4", movieList.get(0).getTitle());
     }
 
 

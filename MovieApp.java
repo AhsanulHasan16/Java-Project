@@ -59,5 +59,27 @@ public class MovieApp {
         favorites.put(userEmail, userFavorites);
     }
 
+    // Displaying User Details Alongside Their Favorites
+    public void displayUserDetails(String userEmail) {
+        System.out.println("Details Of " + userEmail + ":");
+        List<Movie> userFavorites = favorites.get(userEmail);
+        System.out.println(userEmail + "'s Favorites Are: ");
+        for (Movie movie : userFavorites) {
+            System.out.println(movie.getTitle());
+        }
+    }
+
+    // Searching Only Favorites Movies
+    public List<Movie> searchFavoritesMovies(String userEmail, String string) {
+        List<Movie> movieList = new ArrayList<>();
+        List<Movie> userFavorites = favorites.get(userEmail);
+
+        for (Movie movie : userFavorites) {
+            if (movie.getTitle().contains(string) || movie.getCast().contains(string) || movie.getCategory().contains(string))
+                movieList.add(movie);
+        }
+
+        return movieList;
+    }
 
 }
