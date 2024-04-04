@@ -25,8 +25,17 @@ public class MovieApp {
             if (movie.getTitle().contains(string) || movie.getCast().contains(string) || movie.getCategory().contains(string))
                 movieList.add(movie);
         }
-
+        
         return movieList;
+    }
+
+    // Showing Movie Details
+    public void movieDetails(Movie movie) {
+        System.out.println("Title: " + movie.getTitle());
+        System.out.println("Cast: " + String.join(",", movie.getCast()));
+        System.out.println("Category: " + movie.getCategory());
+        System.out.println("Release Date: " + movie.getReleaseDate());
+        System.out.println("Budget: $" + movie.getBudget());
     }
 
 

@@ -25,9 +25,9 @@ public class MovieAppTest {
 
     @Test
     void searchMoviesTest() {
-        Movie movie1 = new Movie("Movie1", "Action", Arrays.asList("X", "Y"));
-        Movie movie2 = new Movie("MovieName2", "Horror", Arrays.asList("Z", "H"));
-        Movie movie3 = new Movie("Film3", "Comedy", Arrays.asList("J", "K"));
+        Movie movie1 = new Movie("Movie1", "Action", Arrays.asList("X", "Y"), "1-4-2020", 400000);
+        Movie movie2 = new Movie("MovieName2", "Horror", Arrays.asList("Z", "H"), "1-4-2020", 400000);
+        Movie movie3 = new Movie("Film3", "Comedy", Arrays.asList("J", "K"), "1-4-2020", 400000);
 
         app.movies.add(movie1);
         app.movies.add(movie2);

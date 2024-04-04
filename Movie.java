@@ -5,11 +5,15 @@ public class Movie {
     private String title;
     private String category;
     private List<String> cast;
+    private String releaseDate;
+    private double budget;
 
-    public Movie(String title, String category, List<String> cast) {
+    public Movie(String title, String category, List<String> cast, String releaseDate, double budget) {
         this.title = title;
         this.category = category;
         this.cast = cast;
+        this.releaseDate = releaseDate;
+        this.budget = budget;
     }
 
     public String getTitle() {
@@ -24,4 +28,11 @@ public class Movie {
         return cast;
     }
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
 }
