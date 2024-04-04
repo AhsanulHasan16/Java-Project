@@ -51,5 +51,13 @@ public class MovieApp {
         favorites.put(userEmail, userFavorites);
     }
 
+    // Removing Movies From Favorites
+    public void removeFavorites(String userEmail, Movie movie) {
+        List<Movie> userFavorites = favorites.get(userEmail);
+        if (userFavorites == null) System.out.println("This user has no favorite movies");
+        userFavorites.remove(movie);
+        favorites.put(userEmail, userFavorites);
+    }
+
 
 }

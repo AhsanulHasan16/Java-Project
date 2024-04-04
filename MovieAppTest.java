@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MovieAppTest {
 
@@ -53,6 +52,21 @@ public class MovieAppTest {
 
         List<Movie> favs = app.favorites.get("ahsanul2051@gmail.com");
         assertTrue(favs.containsAll(Arrays.asList(movie1, movie2)));
+    }
+
+    @Test
+    void removeFavoritesTest() {
+        Movie movie1 = new Movie("Movie1", "Action", Arrays.asList("X", "Y"), "1-4-2020", 400000);
+        Movie movie2 = new Movie("MovieName2", "Horror", Arrays.asList("Z", "H"), "1-4-2020", 400000);
+        Movie movie3 = new Movie("Film3", "Comedy", Arrays.asList("J", "K"), "1-4-2020", 400000);
+
+        app.addFavorites("ahsanul2051@gmail.com", movie1);
+        app.addFavorites("ahsanul2051@gmail.com", movie2);
+
+        app.removeFavorites("ahsanul2051@gmail.com", movie1);
+        assertTrue(app.favorites.get("ahsanul2051@gmail.com").contains(movie2));
+        assertFalse(app.favorites.get("ahsanul2051@gmail.com").contains(movie1));
+
     }
 
 
