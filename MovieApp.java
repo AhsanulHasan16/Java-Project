@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MovieApp {
 
@@ -27,10 +24,11 @@ public class MovieApp {
         List<Movie> movieList = new ArrayList<>();
 
         for (Movie movie : movies) {
-            if (movie.getTitle().contains(string) || movie.getCast().contains(string) || movie.getCategory().contains(string))
+            if (movie.getTitle().toLowerCase().contains(string.toLowerCase()) || movie.getCast().stream().map(String::toLowerCase).anyMatch(c -> c.contains(string.toLowerCase())) || movie.getCategory().toLowerCase().contains(string.toLowerCase()))
                 movieList.add(movie);
         }
-        
+
+        Collections.sort(movieList, Comparator.comparing(Movie::getTitle));
         return movieList;
     }
 
@@ -75,10 +73,11 @@ public class MovieApp {
         List<Movie> userFavorites = favorites.get(userEmail);
 
         for (Movie movie : userFavorites) {
-            if (movie.getTitle().contains(string) || movie.getCast().contains(string) || movie.getCategory().contains(string))
+            if (movie.getTitle().toLowerCase().contains(string.toLowerCase()) || movie.getCast().stream().map(String::toLowerCase).anyMatch(c -> c.contains(string.toLowerCase())) || movie.getCategory().toLowerCase().contains(string.toLowerCase()))
                 movieList.add(movie);
         }
 
+        Collections.sort(movieList, Comparator.comparing(Movie::getTitle));
         return movieList;
     }
 

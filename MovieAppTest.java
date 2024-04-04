@@ -106,13 +106,13 @@ public class MovieAppTest {
         Movie movie4 = new Movie("Film4", "Comedy", Arrays.asList("J", "K"), "1-4-2020", 400000);
 
         app.addFavorites("ahsanul2051@gmail.com", movie1);
-        app.addFavorites("ahsanul2051@gmail.com", movie2);
+        app.addFavorites("ahsanul2051@gmail.com", movie3);
         app.addFavorites("ahsanul2051@gmail.com", movie4);
 
-        List<Movie> movieList = app.searchFavoritesMovies("ahsanul2051@gmail.com", "Film");
-        assertEquals(1, movieList.size());
-        assertEquals("Film4", movieList.get(0).getTitle());
+        List<Movie> movieList = app.searchFavoritesMovies("ahsanul2051@gmail.com", "Comedy");
+        assertEquals(2, movieList.size());
+        assertEquals("Film3", movieList.get(0).getTitle());
+        assertEquals("Film4", movieList.get(1).getTitle());
     }
-
 
 }
