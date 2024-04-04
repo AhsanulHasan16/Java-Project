@@ -40,7 +40,15 @@ public class MovieAppTest {
         assertEquals(2, movieList.size());
     }
 
+    @Test
+    void movieDetailsTest() {
+        Movie movie1 = new Movie("Movie1", "Action", Arrays.asList("X", "Y"), "1-4-2020", 400000);
+        Movie movie2 = new Movie("MovieName2", "Horror", Arrays.asList("Z", "H"), "1-4-2020", 400000);
 
+        app.movieDetails(movie2);
+        String expectedOutput = "Title: MovieName2\r\nCast: Z,H\r\nCategory: Horror\r\nRelease Date: 1-4-2020\r\nBudget: $400000.0\r\n";
+        assertEquals(expectedOutput, outputStream.toString());
+    }
 
     @Test
     void addFavoritesTest() {
